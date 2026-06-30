@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StyleType — Free Fancy Text & Stylish Font Generator </title>
+<meta name="description" content="Turn plain text into 100+ stylish fonts instantly — bold, italic, gothic, glitch, bubble, cursive and more. Copy and paste fancy text for Instagram bios, usernames, WhatsApp status and more. Free, no signup.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#150f1a;
+    --surface:#1e1726;
+    --surface-2:#251c30;
+    --border:#34293f;
+    --text:#f3eef6;
+    --muted:#a195ad;
+    --coral:#ff6b5d;
+    --teal:#2dd9c7;
+    --gold:#ffd166;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(700px 400px at 85% -10%, rgba(255,107,93,0.16), transparent 60%),
+      radial-gradient(700px 400px at -10% 10%, rgba(45,217,199,0.14), transparent 60%),
+      var(--bg);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    line-height:1.5;
+  }
+  a{color:inherit;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px;}
+
+  /* Header */
+  header.site{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:22px 24px;max-width:1180px;margin:0 auto;
+  }
+  .brand{display:flex;align-items:baseline;gap:10px;}
+  .brand-mark{
+    font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.3rem;letter-spacing:0.02em;
+  }
+  .brand-mark span{color:var(--coral);}
+  .brand-tag{font-size:0.8rem;color:var(--muted);}
+
+  /* Hero */
+  .hero{padding:36px 0 28px;text-align:center;}
+  .hero h1{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700;
+    font-size:clamp(1.9rem, 4.2vw, 3.1rem);
+    line-height:1.12;
+    margin:0 0 14px;
+    letter-spacing:-0.01em;
+  }
+  .hero h1 em{
+    font-style:normal;
+    background:linear-gradient(90deg,var(--coral),var(--gold) 55%, var(--teal));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .hero p{color:var(--muted);font-size:1.02rem;max-width:560px;margin:0 auto;}
+
+  /* Stage */
+  .stage{
+    margin:30px auto 0;max-width:760px;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:22px;
+    box-shadow:0 30px 60px -30px rgba(0,0,0,0.6);
+  }
+  .stage textarea{
+    width:100%;
+    background:var(--surface-2);
+    border:1px solid var(--border);
+    border-radius:12px;
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    font-size:1.05rem;
+    padding:14px 16px;
+    resize:none;
+    min-height:52px;
+    outline:none;
+  }
+  .stage textarea:focus{border-color:var(--coral);}
+  .stage-preview-label{
+    display:flex;align-items:center;justify-content:space-between;
+    margin:18px 0 8px;font-size:0.78rem;color:var(--muted);
+    text-transform:uppercase;letter-spacing:0.08em;font-family:'JetBrains Mono',monospace;
+  }
+  .stage-preview{
+    min-height:74px;
+    display:flex;align-items:center;
+    font-size:clamp(1.6rem, 4vw, 2.4rem);
+    word-break:break-word;
+    padding:6px 2px;
+  }
+
+  /* Toolbar */
+  .toolbar{
+    display:flex;gap:12px;align-items:center;flex-wrap:wrap;
+    margin:46px 0 18px;
+  }
+  .toolbar input[type=text]{
+    flex:1;min-width:220px;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:11px 14px;
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    font-size:0.95rem;
+    outline:none;
+  }
+  .toolbar input[type=text]:focus{border-color:var(--teal);}
+  .toolbar .count{font-size:0.82rem;color:var(--muted);white-space:nowrap;font-family:'JetBrains Mono',monospace;}
+
+  /* Grid */
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(270px, 1fr));
+    gap:14px;
+    padding-bottom:60px;
+  }
+  .card{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:16px;
+    display:flex;flex-direction:column;gap:10px;
+    transition:border-color 0.15s ease, transform 0.15s ease;
+  }
+  .card:hover{border-color:rgba(255,107,93,0.45);transform:translateY(-2px);}
+  .card-top{display:flex;align-items:center;justify-content:space-between;gap:8px;}
+  .card-code{font-family:'JetBrains Mono',monospace;font-size:0.72rem;color:var(--teal);}
+  .card-label{font-size:0.78rem;color:var(--muted);text-align:right;}
+  .card-output{
+    min-height:48px;
+    font-size:1.18rem;
+    line-height:1.45;
+    word-break:break-word;
+    white-space:pre-wrap;
+  }
+  .card-copy{
+    align-self:flex-start;
+    background:var(--surface-2);
+    border:1px solid var(--border);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    font-size:0.82rem;
+    font-weight:600;
+    padding:7px 14px;
+    border-radius:8px;
+    cursor:pointer;
+    transition:background 0.15s ease, border-color 0.15s ease;
+  }
+  .card-copy:hover{border-color:var(--coral);}
+  .card-copy.copied{background:var(--teal);color:#0c1f1c;border-color:var(--teal);}
+
+  /* Empty state */
+  .empty{
+    text-align:center;color:var(--muted);padding:40px 0;font-size:0.95rem;
+  }
+
+  footer{
+    border-top:1px solid var(--border);
+    padding:30px 0 60px;
+    color:var(--muted);
+    font-size:0.85rem;
+  }
+  footer .wrap{display:flex;flex-direction:column;gap:8px;}
+  footer strong{color:var(--text);}
+
+  @media(max-width:640px){
+    .hero{padding:24px 0 18px;}
+    .stage{padding:16px;}
+    .toolbar{margin:32px 0 14px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="brand">
+    <span class="brand-mark">STYLE<span>/</span>TYPE</span>
+    <span class="brand-tag">fancy text generator</span>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <h1>Plain text in.<br><em>100+ stylish fonts</em> out.</h1>
+    <p>Type once, get a whole catalog of fancy text styles to copy-paste — for Instagram bios, usernames, WhatsApp status, gaming names and more.</p>
+  </section>
+
+  <div class="stage">
+    <textarea id="textInput" rows="2" placeholder="Type something cool…" maxlength="200"></textarea>
+    <div class="stage-preview-label"><span>Featured style — Bold Script</span><span id="charCount">0 / 200</span></div>
+    <div class="stage-preview" id="stagePreview"></div>
+  </div>
+
+  <div class="toolbar">
+    <input type="text" id="filterInput" placeholder="Filter styles… try “bold”, “glitch”, “gothic”, “spaced”">
+    <span class="count" id="resultCount"></span>
+  </div>
+
+  <div class="grid" id="styleGrid"></div>
+  <p class="empty" id="emptyState" style="display:none;">No styles match that filter. Try a different word.</p>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><strong>About StyleType</strong> — a free tool that converts your text into stylish unicode characters you can copy and paste almost anywhere.</div>
+    <div>Note: not every style renders identically on every app or device, since it depends on the unicode fonts installed there. Most styles work well on Instagram, WhatsApp, Discord, Facebook and Twitter/X.</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+
+  // ---------- helpers ----------
+  function mapChars(str, mapFn){
+    return [...str].map(ch => mapFn(ch)).join('');
+  }
+  function combine(str, mark){
+    return [...str].map(c => c === ' ' ? c : c + mark).join('');
+  }
+
+  // ---------- core unicode transforms ----------
+  function bold(ch){
+    if(ch>='A'&&ch<='Z') return String.fromCodePoint(0x1D400+ch.charCodeAt(0)-65);
+    if(ch>='a'&&ch<='z') return String.fromCodePoint(0x1D41A+ch.charCodeAt(0)-97);
+    if(ch>='0'&&ch<='9') return String.fromCodePoint(0x1D7CE+ch.charCodeAt(0)-48);
+    return ch;
+  }
+  function italic(ch){
+    if(ch==='h') return '\u210E';
+    if(ch>='A'&&ch<='Z') return String.fromCodePoint(0x1D434+ch.charCodeAt(0)-65);
+    if(ch>='a'&&ch<='z') return String.fromCodePoint(0x1D44E+ch.charCodeAt(0)-97);
+    return ch;
+  }
+  function boldItalic(ch){
+    if(ch>='A'&&ch<='Z') return String.fromCodePoint(0x1D468+ch.charCodeAt(0)-65);
+    if(ch>='a'&&ch<='z') return String.fromCodePoint(0x1D482+ch.charCodeAt(0)-97);
+    return ch;
+  }
+  const scriptCapExc={B:0x212C,E:0x2130,F:0x2131,H:0x210B,I:0x2110,L:0x2112,M:0x2133,R:0x211B};
+  const scriptLowExc={e:0x212F,g:0x210A,o:0x2134};
+  function script(ch){
+    if(scriptCapExc[ch]) return String.fromCodePoint(scriptCapExc[ch]);
+    if(scriptLowExc[ch]) return String.fromCodePoint(scriptLowExc[ch]);
+    if(ch>='A'&&ch<='Z') return String.fromCodePoint(0x1D49C+ch.charCodeAt(0)-65);
+    if(ch>='a'&&ch<='z') return String.fromCodePoint(0x1D4B6+ch.charCodeAt(0)-97);
+    return ch;
+  }
+  function boldScript(ch){
+    if(ch>='A'&&ch<='Z') return String.fromCodePoint(0x1D4D0+ch.charCodeAt(0)-65);
+    if(ch>='a'&&ch<='z') return String.fromCodePoint(0x1D4EA+ch.charCodeAt(0)-97);
+    return ch;
+  }
+  const frakturCapExc={C:0x212D,H:0x210C,I:0x2111,R:0x211C,Z:0x2128};
+  function fraktur(ch){
+    if(frakturCapExc[ch]) return String.fromCodePoint(frakturCapExc[ch]);
+    if(ch>='A'&&ch<='Z') return String.fromCodePoint(0x1D504+ch.charCodeAt(0)-65);
+    if(ch>='a'&&ch<='z') return String.fromCodePoint(0x1D51E+ch.charCodeAt(0)-97);
+    return ch;
+  }
+  function boldFraktur(ch){
+    if(ch>='A'&&ch<='Z') return String.fromCodePoint(0x1D56C+ch.charCodeAt(0)-65);
+    if(ch>='a'&&ch<='z') return String.fromCodePoint(0x1D586+ch.charCodeAt(0)-97);
+    return ch;
+  }
+  const dstrokCapExc={C:0x2102,H:0x210D,N:0x2115,P:0x2119,Q:0x211A,R:0x211D,Z:0x2124};
+  function doubleStruck(ch){
+    if(dstrokCapExc[ch]) return String.fromCodePoint(dstrokCapExc[ch]);
+    if(ch>='A'&&ch<='Z') return String.fromCodePoint(0x1D538+ch.charCodeAt(0)-65);
+    if(ch>='a'&&ch<='z') return String.fromCodePoint(0x1D552+ch.charCodeAt(0)-97);
+    if(ch>='0'&&ch<='9') return String.fromCodePoint(0x1D7D8+ch.charCodeAt(0)-48);
+    return ch;
+  }
+  function sansSerif(ch){
+    if(ch>='A'&&ch<='Z') return String.fromCodePoint(0x1D5A0+ch.charCodeAt(0)-65);
+    if(ch>='a'&&ch<='z') return String.fromCodePoint(0x1D5BA+ch.charCodeAt(0)-97);
+    if(ch>='0'&&ch<='9') return String.fromCodePoint(0x1D7E2+ch.charCodeAt(0)-48);
+    return ch;
+  }
+  function sansBold(ch){
+    if(ch>='A'&&ch<='Z') return String.fromCodePoint(0x1D5D4+ch.charCodeAt(0)-65);
+    if(ch>='a'&&ch<='z') return String.fromCodePoint(0x1D5EE+ch.charCodeAt(0)-97);
+    if(ch>='0'&&ch<='9') return String.fromCodePoint(0x1D7EC+ch.charCodeAt(0)-48);
+    return ch;
+  }
+  function sansItalic(ch){
+    if(ch>='A'&&ch<='Z') return String.fromCodePoint(0x1D608+ch.charCodeAt(0)-65);
+    if(ch>='a'&&ch<='z') return String.fromCodePoint(0x1D622+ch.charCodeAt(0)-97);
+    return ch;
+  }
+  function sansBoldItalic(ch){
+    if(ch>='A'&&ch<='Z') return String.fromCodePoint(0x1D63C+ch.charCodeAt(0)-65);
+    if(ch>='a'&&ch<='z') return String.fromCodePoint(0x1D656+ch.charCodeAt(0)-97);
+    return ch;
+  }
+  function monospace(ch){
+    if(ch>='A'&&ch<='Z') return String.fromCodePoint(0x1D670+ch.charCodeAt(0)-65);
+    if(ch>='a'&&ch<='z') return String.fromCodePoint(0x1D68A+ch.charCodeAt(0)-97);
+    if(ch>='0'&&ch<='9') return String.fromCodePoint(0x1D7F6+ch.charCodeAt(0)-48);
+    return ch;
+  }
+  function circled(ch){
+    if(ch>='A'&&ch<='Z') return String.fromCodePoint(0x24B6+ch.charCodeAt(0)-65);
+    if(ch>='a'&&ch<='z') return String.fromCodePoint(0x24D0+ch.charCodeAt(0)-97);
+    if(ch>='1'&&ch<='9') return String.fromCodePoint(0x2460+ch.charCodeAt(0)-49);
+    if(ch==='0') return '\u24EA';
+    return ch;
+  }
+  function circledNeg(ch){
+    const up = ch.toUpperCase();
+    if(up>='A'&&up<='Z') return String.fromCodePoint(0x1F150+up.charCodeAt(0)-65);
+    return ch;
+  }
+  function squared(ch){
+    const up = ch.toUpperCase();
+    if(up>='A'&&up<='Z') return String.fromCodePoint(0x1F130+up.charCodeAt(0)-65);
+    return ch;
+  }
+  function squaredNeg(ch){
+    const up = ch.toUpperCase();
+    if(up>='A'&&up<='Z') return String.fromCodePoint(0x1F170+up.charCodeAt(0)-65);
+    return ch;
+  }
+  function fullwidth(ch){
+    if(ch===' ') return '\u3000';
+    if(ch>='A'&&ch<='Z') return String.fromCodePoint(0xFF21+ch.charCodeAt(0)-65);
+    if(ch>='a'&&ch<='z') return String.fromCodePoint(0xFF41+ch.charCodeAt(0)-97);
+    if(ch>='0'&&ch<='9') return String.fromCodePoint(0xFF10+ch.charCodeAt(0)-48);
+    return ch;
+  }
+  const smallCapsMap={a:'ᴀ',b:'ʙ',c:'ᴄ',d:'ᴅ',e:'ᴇ',f:'ꜰ',g:'ɢ',h:'ʜ',i:'ɪ',j:'ᴊ',k:'ᴋ',l:'ʟ',m:'ᴍ',n:'ɴ',o:'ᴏ',p:'ᴘ',q:'ǫ',r:'ʀ',s:'s',t:'ᴛ',u:'ᴜ',v:'ᴠ',w:'ᴡ',x:'x',y:'ʏ',z:'ᴢ'};
+  function smallCaps(ch){
+    const low = ch.toLowerCase();
+    return smallCapsMap[low] || ch;
+  }
+  const superMap={a:'ᵃ',b:'ᵇ',c:'ᶜ',d:'ᵈ',e:'ᵉ',f:'ᶠ',g:'ᵍ',h:'ʰ',i:'ⁱ',j:'ʲ',k:'ᵏ',l:'ˡ',m:'ᵐ',n:'ⁿ',o:'ᵒ',p:'ᵖ',q:'q',r:'ʳ',s:'ˢ',t:'ᵗ',u:'ᵘ',v:'ᵛ',w:'ʷ',x:'ˣ',y:'ʸ',z:'ᶻ',
+    '0':'⁰','1':'¹','2':'²','3':'³','4':'⁴','5':'⁵','6':'⁶','7':'⁷','8':'⁸','9':'⁹'};
+  function superscript(ch){
+    const low = ch.toLowerCase();
+    return superMap[low] || ch;
+  }
+  const subMap={a:'ₐ',e:'ₑ',h:'ₕ',i:'ᵢ',j:'ⱼ',k:'ₖ',l:'ₗ',m:'ₘ',n:'ₙ',o:'ₒ',p:'ₚ',r:'ᵣ',s:'ₛ',t:'ₜ',u:'ᵤ',v:'ᵥ',x:'ₓ',
+    '0':'₀','1':'₁','2':'₂','3':'₃','4':'₄','5':'₅','6':'₆','7':'₇','8':'₈','9':'₉'};
+  function subscript(ch){
+    const low = ch.toLowerCase();
+    return subMap[low] || ch;
+  }
+  const flipMap={a:'ɐ',b:'q',c:'ɔ',d:'p',e:'ǝ',f:'ɟ',g:'ƃ',h:'ɥ',i:'ᴉ',j:'ɾ',k:'ʞ',l:'l',m:'ɯ',n:'u',o:'o',p:'d',q:'b',r:'ɹ',s:'s',t:'ʇ',u:'n',v:'ʌ',w:'ʍ',x:'x',y:'ʎ',z:'z',
+    A:'∀',B:'B',C:'Ɔ',D:'D',E:'Ǝ',F:'Ⅎ',G:'⅁',H:'H',I:'I',J:'ſ',K:'Ʞ',L:'⅂',M:'W',N:'N',O:'O',P:'Ԁ',Q:'Q',R:'ᴚ',S:'S',T:'⊥',U:'∩',V:'Λ',W:'M',X:'X',Y:'⅄',Z:'Z',
+    '0':'0','1':'Ɩ','2':'ᄅ','3':'Ɛ','4':'ㄣ','5':'ϛ','6':'9','7':'ㄥ','8':'8','9':'6','.':'˙',',':"'",'?':'¿','!':'¡',"'":',' };
+  function flip(ch){ return flipMap[ch] || ch; }
+  function upsideDown(str){
+    return [...str].map(c => flip(c)).reverse().join('');
+  }
+
+  const zalgoUp=['\u030d','\u030e','\u0304','\u0305','\u033f','\u0311','\u0306','\u0310','\u0352','\u0357','\u0351','\u0307','\u0308','\u030a','\u0342','\u0343','\u0344','\u034a','\u034b','\u034c','\u0303','\u0302','\u030c','\u0350','\u0300','\u0301','\u030b','\u030f'];
+  const zalgoDown=['\u0316','\u0317','\u0318','\u0319','\u031c','\u031d','\u031e','\u031f','\u0320','\u0324','\u0325','\u0326','\u0329','\u032a','\u032b','\u032c','\u032d','\u032e','\u032f','\u0330','\u0331','\u0333','\u0339','\u033a','\u033c','\u0347','\u0348','\u0349'];
+  function zalgo(str, intensity){
+    return [...str].map(c=>{
+      if(c===' ') return c;
+      let out=c;
+      for(let i=0;i<intensity;i++) out += zalgoUp[Math.floor(Math.random()*zalgoUp.length)];
+      for(let i=0;i<Math.floor(intensity/2);i++) out += zalgoDown[Math.floor(Math.random()*zalgoDown.length)];
+      return out;
+    }).join('');
+  }
+
+  function alternatingCase(str, startLower){
+    let upper = !startLower;
+    return [...str].map(c=>{
+      if(!/[a-zA-Z]/.test(c)) return c;
+      const out = upper ? c.toUpperCase() : c.toLowerCase();
+      upper = !upper;
+      return out;
+    }).join('');
+  }
+
+  const leetMap={a:'4',e:'3',i:'1',o:'0',s:'5',t:'7',A:'4',E:'3',I:'1',O:'0',S:'5',T:'7'};
+  function leet(str){
+    return [...str].map(c => leetMap[c] || c).join('');
+  }
+
+  // ---------- base style list ----------
+  const baseTransforms = [
+    {label:'Bold', fn:s=>mapChars(s,bold)},
+    {label:'Italic', fn:s=>mapChars(s,italic)},
+    {label:'Bold Italic', fn:s=>mapChars(s,boldItalic)},
+    {label:'Script', fn:s=>mapChars(s,script)},
+    {label:'Bold Script', fn:s=>mapChars(s,boldScript)},
+    {label:'Fraktur (Gothic)', fn:s=>mapChars(s,fraktur)},
+    {label:'Bold Fraktur', fn:s=>mapChars(s,boldFraktur)},
+    {label:'Double-Struck', fn:s=>mapChars(s,doubleStruck)},
+    {label:'Sans Serif', fn:s=>mapChars(s,sansSerif)},
+    {label:'Sans Bold', fn:s=>mapChars(s,sansBold)},
+    {label:'Sans Italic', fn:s=>mapChars(s,sansItalic)},
+    {label:'Sans Bold Italic', fn:s=>mapChars(s,sansBoldItalic)},
+    {label:'Monospace', fn:s=>mapChars(s,monospace)},
+    {label:'Circled', fn:s=>mapChars(s,circled)},
+    {label:'Circled (Dark)', fn:s=>mapChars(s,circledNeg)},
+    {label:'Squared', fn:s=>mapChars(s,squared)},
+    {label:'Squared (Dark)', fn:s=>mapChars(s,squaredNeg)},
+    {label:'Fullwidth', fn:s=>mapChars(s,fullwidth)},
+    {label:'Small Caps', fn:s=>mapChars(s,smallCaps)},
+    {label:'Superscript', fn:s=>mapChars(s,superscript)},
+    {label:'Subscript', fn:s=>mapChars(s,subscript)},
+    {label:'Upside Down', fn:upsideDown},
+    {label:'Mirrored', fn:s=>[...s].reverse().join('')},
+    {label:'Flip (No Reverse)', fn:s=>mapChars(s,flip)},
+    {label:'Strikethrough', fn:s=>combine(s,'\u0336')},
+    {label:'Double Strike', fn:s=>combine(s,'\u0335')},
+    {label:'Underline', fn:s=>combine(s,'\u0332')},
+    {label:'Wavy Underline', fn:s=>combine(s,'\u0330')},
+    {label:'Dotted', fn:s=>combine(s,'\u0307')},
+    {label:'Slashed', fn:s=>combine(s,'\u0337')},
+    {label:'Glitch — Light', fn:s=>zalgo(s,2)},
+    {label:'Glitch — Medium', fn:s=>zalgo(s,5)},
+    {label:'Glitch — Heavy', fn:s=>zalgo(s,10)},
+    {label:'Wide Spaced', fn:s=>[...s].join(' ')},
+    {label:'Wide Spaced Bold', fn:s=>[...mapChars(s,bold)].join(' ')},
+    {label:'sPoNgEcAsE', fn:s=>alternatingCase(s,false)},
+    {label:'rEvErSe SpOnGe', fn:s=>alternatingCase(s,true)},
+    {label:'Leetspeak', fn:leet},
+    {label:'Dash-Spaced', fn:s=>[...s].join('-')},
+    {label:'Dot-Spaced', fn:s=>[...s].join('.')},
+    {label:'Underscore-Spaced', fn:s=>[...s].join('_')},
+    {label:'Tilde-Spaced', fn:s=>[...s].join('~')},
+    {label:'Bullet-Spaced', fn:s=>[...s].join('•')},
+    {label:'Title Case', fn:s=>s.replace(/\b\w/g,c=>c.toUpperCase())},
+    {label:'Two-Tone Bold', fn:s=>[...s].map((c,i)=> i%2===0 ? bold(c) : c).join('')},
+    {label:'Two-Tone Italic', fn:s=>[...s].map((c,i)=> i%2===0 ? italic(c) : c).join('')},
+    {label:'Caps Alternate', fn:s=>[...s].map((c,i)=> i%2===0 ? c.toUpperCase() : c.toLowerCase()).join('')},
+    {label:'Bold Caps', fn:s=>mapChars(s.toUpperCase(),bold)},
+    {label:'Fraktur Caps', fn:s=>mapChars(s.toUpperCase(),fraktur)},
+    {label:'Small Caps Spaced', fn:s=>[...mapChars(s,smallCaps)].join(' ')},
+    {label:'Double-Struck Spaced', fn:s=>[...mapChars(s,doubleStruck)].join(' ')},
+    {label:'Circled Spaced', fn:s=>[...mapChars(s,circled)].join(' ')},
+    {label:'Bold Underline', fn:s=>combine(mapChars(s,bold),'\u0332')},
+    {label:'Italic Strikethrough', fn:s=>combine(mapChars(s,italic),'\u0336')},
+    {label:'Script Underline', fn:s=>combine(mapChars(s,script),'\u0332')},
+    {label:'Fraktur Strikethrough', fn:s=>combine(mapChars(s,fraktur),'\u0336')},
+    {label:'Glitch Bold', fn:s=>zalgo(mapChars(s,bold),4)},
+    {label:'Superscript Framed', fn:s=>'⁽ '+mapChars(s,superscript)+' ⁾'},
+    {label:'Code Style', fn:s=>'⟨ '+mapChars(s,monospace)+' ⟩'},
+    {label:'Fullwidth Framed', fn:s=>'⌈ '+mapChars(s,fullwidth)+' ⌋'},
+    {label:'Leet Framed', fn:s=>'[ '+leet(s)+' ]'},
+  ];
+
+  // ---------- decorative frames (applied to plain / bold / italic) ----------
+  const wraps = [
+    {label:'Temple Frame', pre:'꧁ ', post:' ꧂'},
+    {label:'Royal Frame', pre:'⊰• ', post:' •⊱'},
+    {label:'Box Frame', pre:'【 ', post:' 】'},
+    {label:'Bracket Frame', pre:'⟦ ', post:' ⟧'},
+    {label:'Star Frame', pre:'☆ ', post:' ☆'},
+    {label:'Flower Frame', pre:'✿ ', post:' ✿'},
+    {label:'Banner Frame', pre:'▬▬▬ ', post:' ▬▬▬'},
+    {label:'Sparkle Frame', pre:'✦彡 ', post:' 彡✦'},
+    {label:'Gothic Frame', pre:'†† ', post:' ††'},
+    {label:'Wave Frame', pre:'~*~ ', post:' ~*~'},
+    {label:'Diamond Frame', pre:'◈ ', post:' ◈'},
+    {label:'Circuit Frame', pre:'⌬⌬ ', post:' ⌬⌬'},
+  ];
+  const frameVariants = [
+    {suffix:'', fn:s=>s},
+    {suffix:' (Bold)', fn:s=>mapChars(s,bold)},
+    {suffix:' (Italic)', fn:s=>mapChars(s,italic)},
+  ];
+
+  // ---------- word separators ----------
+  const wordJoins = [
+    {label:'Crown Spacer', emoji:'👑'},
+    {label:'Fire Spacer', emoji:'🔥'},
+    {label:'Skull Spacer', emoji:'💀'},
+    {label:'Gem Spacer', emoji:'💎'},
+    {label:'Sparkle Spacer', emoji:'✨'},
+    {label:'Heart Spacer', emoji:'💕'},
+    {label:'Lightning Spacer', emoji:'⚡'},
+    {label:'Moon Spacer', emoji:'🌙'},
+  ];
+
+  function buildStyles(text){
+    const styles = [];
+    baseTransforms.forEach(bt => styles.push({label:bt.label, text:bt.fn(text)}));
+    wraps.forEach(w=>{
+      frameVariants.forEach(v=>{
+        styles.push({label:w.label+v.suffix, text:w.pre+v.fn(text)+w.post});
+      });
+    });
+    wordJoins.forEach(wj=>{
+      const joined = text.split(' ').filter(Boolean).join(' '+wj.emoji+' ');
+      styles.push({label:wj.label, text: joined || text});
+    });
+    return styles;
+  }
+
+  // ---------- render ----------
+  const input = document.getElementById('textInput');
+  const grid = document.getElementById('styleGrid');
+  const filterInput = document.getElementById('filterInput');
+  const resultCount = document.getElementById('resultCount');
+  const emptyState = document.getElementById('emptyState');
+  const stagePreview = document.getElementById('stagePreview');
+  const charCount = document.getElementById('charCount');
+
+  const DEFAULT_TEXT = 'Type Something Cool';
+
+  function render(){
+    const raw = input.value.trim() === '' ? DEFAULT_TEXT : input.value;
+    charCount.textContent = input.value.length + ' / 200';
+    stagePreview.textContent = mapChars(raw, boldScript);
+
+    const styles = buildStyles(raw);
+    const filterVal = filterInput.value.trim().toLowerCase();
+
+    grid.innerHTML = '';
+    let shown = 0;
+
+    styles.forEach((st, idx) => {
+      if(filterVal && !st.label.toLowerCase().includes(filterVal)) return;
+      shown++;
+      const card = document.createElement('div');
+      card.className = 'card';
+
+      const top = document.createElement('div');
+      top.className = 'card-top';
+      const code = document.createElement('span');
+      code.className = 'card-code';
+      code.textContent = 'No. ' + String(idx+1).padStart(3,'0');
+      const label = document.createElement('span');
+      label.className = 'card-label';
+      label.textContent = st.label;
+      top.appendChild(code);
+      top.appendChild(label);
+
+      const output = document.createElement('div');
+      output.className = 'card-output';
+      output.textContent = st.text;
+
+      const copyBtn = document.createElement('button');
+      copyBtn.className = 'card-copy';
+      copyBtn.textContent = 'Copy';
+      copyBtn.addEventListener('click', () => {
+        const doCopySuccess = () => {
+          copyBtn.textContent = 'Copied!';
+          copyBtn.classList.add('copied');
+          setTimeout(()=>{ copyBtn.textContent='Copy'; copyBtn.classList.remove('copied'); }, 1400);
+        };
+        if(navigator.clipboard && navigator.clipboard.writeText){
+          navigator.clipboard.writeText(st.text).then(doCopySuccess).catch(()=>{
+            fallbackCopy(st.text); doCopySuccess();
+          });
+        } else {
+          fallbackCopy(st.text); doCopySuccess();
+        }
+      });
+
+      card.appendChild(top);
+      card.appendChild(output);
+      card.appendChild(copyBtn);
+      grid.appendChild(card);
+    });
+
+    resultCount.textContent = shown + ' styles';
+    emptyState.style.display = shown === 0 ? 'block' : 'none';
+  }
+
+  function fallbackCopy(text){
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.left = '-9999px';
+    document.body.appendChild(ta);
+    ta.select();
+    try{ document.execCommand('copy'); }catch(e){}
+    document.body.removeChild(ta);
+  }
+
+  input.addEventListener('input', render);
+  filterInput.addEventListener('input', render);
+
+  render();
+})();
+</script>
+
+</body>
+</html>
